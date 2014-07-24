@@ -644,4 +644,20 @@ class UserTest < ActiveSupport::TestCase
     assert user.destroyed?
   end
 
+  test "allowed_organizations for admin" do
+    assert_equal users(:admin).allowed_organizations.length, Organization.all.count
+  end
+
+  test "allowed_locations for admin" do
+    assert_equal users(:admin).allowed_locations.length, Location.all.count
+  end
+
+  test "allowed_organizations for restricted user" do
+    assert_empty users(:restricted).allowed_organizations
+  end
+
+  test "allowed_locations for restricted user" do
+    assert_empty users(:restricted).allowed_locations
+  end
+
 end
