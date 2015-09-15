@@ -98,8 +98,10 @@ class PuppetclassesControllerTest < ActionController::TestCase
   test 'puppetclass lookup keys are added to partial _class_parameters on EXISTING hostgroup form through ajax POST to parameters' do
     hostgroup = hostgroups(:common)
     puppetclass = puppetclasses(:two)
+    hostgroup_attributes = hostgroup.attributes.except!('id', 'created_at', 'updated_at')
     # host_id is posted instead of hostgroup_id per host_edit.js#load_puppet_class_parameters
-    post :parameters, {:id => puppetclass.id, :host_id => hostgroup.id, :hostgroup => hostgroup.attributes }, set_session_user
+    post :parameters, { :id => puppetclass.id, :host_id => hostgroup.id,
+                        :hostgroup => hostgroup_attributes }, set_session_user
     assert_response :success
     lookup_keys_added = overridable_lookup_keys(puppetclass, hostgroup)
     assert_equal 2, lookup_keys_added.count
@@ -120,9 +122,12 @@ class PuppetclassesControllerTest < ActionController::TestCase
 
   test 'puppetclass lookup keys are added to partial _class_parameters on NEW hostgroup form through ajax POST to parameters' do
     hostgroup = Hostgroup.new(:name => "new_hostgroup", :environment_id => environments(:production).id)
+    hostgroup_attributes = hostgroup.attributes.except!('id', 'created_at', 'updated_at')
     puppetclass = puppetclasses(:two)
     # host_id is posted instead of hostgroup_id per host_edit.js#load_puppet_class_parameters
-    post :parameters, {:id => puppetclass.id, :host_id => 'null', :hostgroup => hostgroup.attributes }, set_session_user
+
+    post :parameters, { :id => puppetclass.id, :host_id => 'null',
+                        :hostgroup => hostgroup_attributes }, set_session_user
     assert_response :success
     lookup_keys_added = overridable_lookup_keys(puppetclass, hostgroup)
     assert_equal 2, lookup_keys_added.count

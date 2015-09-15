@@ -5,6 +5,13 @@ class Taxonomy < ActiveRecord::Base
 
   serialize :ignore_types, Array
 
+  attr_accessible :name, :title, :environment_ids, :hostgroup_ids, :subnet_ids, :domain_ids,
+    :medium_ids, :user_ids, :users, :smart_proxy_ids, :config_template_ids,
+    :provisioning_template_ids, :compute_resource_ids, :location_ids, :organization_ids,
+    :description, :ignore_types, :environment_names, :hostgroup_names, :subnet_names,
+    :domain_names, :medium_names, :user_names, :smart_proxy_names, :config_template_names,
+    :provisioning_template_names, :compute_resource_names, :location_names, :organization_names,
+
   validates_lengths_from_database
   belongs_to :user
   before_destroy EnsureNotUsedBy.new(:hosts)

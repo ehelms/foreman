@@ -1,7 +1,9 @@
 class Template < ActiveRecord::Base
   validates_lengths_from_database
 
-  attr_accessible :name, :template, :snippet, :audit_comment, :location_ids, :organization_ids, :locked, :default
+  attr_accessible :name, :default, :template, :audit_comment, :location_ids, :location_names,
+    :organization_ids, :organization_names, :operatingsystem_ids, :operatingsystem_names,
+    :snippet, :template_kind, :template_kind_id, :vendor, :operatingsystems
 
   validates :name, :presence => true
   validates :template, :presence => true

@@ -7,6 +7,8 @@ class Realm < ActiveRecord::Base
   TYPES = ["FreeIPA", "Active Directory"]
 
   validates_lengths_from_database
+  attr_accessible :name, :realm_type, :realm_proxy_id, :realm_proxy, :location_ids,
+    :organization_ids, :location_names, :organization_names
   audited :allow_mass_assignment => true, :except => [:hosts_count, :hostgroups_count]
   before_destroy EnsureNotUsedBy.new(:hosts, :hostgroups)
 

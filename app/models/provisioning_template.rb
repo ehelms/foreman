@@ -7,7 +7,7 @@ class ProvisioningTemplate < Template
   audited :allow_mass_assignment => true
 
   attr_accessible :template_kind, :template_kind_id, :template_combinations_attributes,
-                  :operatingsystems, :operatingsystem_ids, :vendor
+                  :operatingsystems, :operatingsystem_ids, :operatingsystem_names, :vendor
   validates :name, :uniqueness => true
   validates :template_kind_id, :presence => true, :unless => Proc.new {|t| t.snippet }
 
