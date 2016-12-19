@@ -14,5 +14,5 @@ SETTINGS[:puppetssldir]  ||= "#{SETTINGS[:puppetvardir]}/ssl"
 
 # Load plugin config, if any
 Dir["#{root}/config/settings.plugins.d/*.yaml"].each do |f|
-  SETTINGS.merge! YAML.load_file f
+  SETTINGS.merge! YAML.load(ERB.new(File.read(f)).result)
 end
