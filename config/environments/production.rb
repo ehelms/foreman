@@ -81,4 +81,6 @@ Foreman::Application.configure do |app|
   config.active_record.dump_schema_after_migration = false
 
   config.webpack.dev_server.enabled = false
+
+  ForemanTasks.dynflow.config.remote = false
 end
