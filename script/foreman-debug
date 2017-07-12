@@ -333,6 +333,7 @@ add_cmd "virsh list" "virsh_list"
 add_files /etc/libvirt/* /etc/libvirt/storage/* /etc/libvirt/qemu/* /etc/libvirt/qemu/networks
 add_files /var/lib/pgsql/data/*.conf
 add_files /var/lib/puppet/ssl/certs/$(hostname -f).pem /var/lib/puppet/ssl/certs/ca.pem
+add_files /etc/puppetlabs/puppet/ssl/certs/$(hostname -f).pem /etc/puppetlabs/puppet/ssl/certs/ca.pem
 add_files /etc/{httpd,apache2}/conf/*
 add_files /etc/{httpd,apache2}/conf.d/*
 add_files /etc/{httpd,apache2}/conf.d/*/*
