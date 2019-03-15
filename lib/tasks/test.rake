@@ -12,7 +12,7 @@ namespace :test do
   desc "Test GraphQL"
   Rake::TestTask.new(:graphql) do |t|
     t.libs << "test"
-    t.pattern = ['test/graphql/**/*_test.rb']
+    t.test_files = ['test/graphql/**/*_test.rb']
     t.verbose = true
     t.warning = false
   end
