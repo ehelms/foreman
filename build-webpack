@@ -1,0 +1,7 @@
+#!/bin/bash
+
+cd foreman
+git checkout origin/$VERSION
+npm install
+export NODE_ENV=production
+./node_modules/.bin/webpack --bail --config config/webpack.config.js

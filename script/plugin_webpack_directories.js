@@ -42,9 +42,10 @@ var aliasPlugins = (pluginEntries) => {
 var webpackedDirs = (stderr) => {
   var handleStderr = stderr || 'ignore';
 
-  return execSync(path.join(__dirname, './plugin_webpack_directories.rb'), {
-    stdio: ['pipe', 'pipe', handleStderr],
-  });
+  return '{ "entries": {}, "paths": [], "plugins": {} }'
+  //return execSync(path.join(__dirname, './plugin_webpack_directories.rb'), {
+  //  stdio: ['pipe', 'pipe', handleStderr],
+  //});
 };
 
 var getPluginDirs = stderr => JSON.parse(sanitizeWebpackDirs(webpackedDirs(stderr)));

@@ -1,0 +1,24 @@
+#!/bin/bash
+
+if [ -z "$VERSION" ];then
+	VERSION='develop'
+fi
+
+echo "Compiling webpack for ${VERSION}"
+
+if [[ -e `which podman` ]];then
+	podman run --name foreman-webpack-builder -e VERSION=$VERSION foreman-webpack-builder
+
+	mkdir -p build
+	mnt=$(podman mount foreman-webpack-builder)
+	cp -Rf ${mnt}/root/foreman/public/webpack build/
+	cp -Rf ${mnt}/root/foreman/node_modules build/
+	podman umount foreman-webpack-builder
+
+	podman rm foreman-webpack-builder
+else
+	docker run webpack
+	docker cp dummy:/path/to/file /dest/to/file
+	docker cp dummy:/root/foreman/public/webpack build/webpack
+	docker cp dummy:/root/foreman/node_modules build/node_modules
+fi
