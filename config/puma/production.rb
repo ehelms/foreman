@@ -13,6 +13,8 @@ threads ENV.fetch('FOREMAN_PUMA_THREADS_MIN', 0).to_i, ENV.fetch('FOREMAN_PUMA_T
 #
 workers ENV.fetch('FOREMAN_PUMA_WORKERS', 2).to_i
 
+bind "tcp://#{ENV.fetch('FOREMAN_BIND', '127.0.0.1')}:#{ENV.fetch('FOREMAN_PORT', 3000)}"
+
 # In clustered mode, Puma can "preload" your application. This loads all the
 # application code prior to forking. Preloading reduces total memory usage of
 # your application via an operating system feature called copy-on-write
