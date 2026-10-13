@@ -4,8 +4,6 @@
 //= link application.css
 //= link application.js
 
-//= link bg-modal-about-pf.png
-
 //= link unimported/email.css
 
 // link compute_resource.js

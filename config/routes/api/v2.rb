@@ -343,6 +343,7 @@ Foreman::Application.routes.draw do
           end
         end
 
+        resources :infrastructure_hosts, :only => [:index, :show]
         resources :instance_hosts, :only => [:destroy, :index, :update]
       end
 

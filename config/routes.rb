@@ -563,6 +563,9 @@ Foreman::Application.routes.draw do
   end
   match 'new/hosts/' => 'react#index', :via => :get, :as => :new_hosts_index_page
 
+  get 'infrastructure_hosts', to: 'infrastructure_hosts#index', as: :infrastructure_hosts
+  get 'infrastructure_hosts/:id', to: 'infrastructure_hosts#index', as: :infrastructure_host, constraints: { id: /[^\/]+/ }
+
   get 'page-not-found' => 'react#index'
   get 'links/:type(/:section)' => 'links#show', :as => 'external_link', :constraints => { section: %r{.*} }
   get 'upgrade' => 'react#index'

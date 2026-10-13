@@ -27,6 +27,11 @@ module Menu
           menu.item :upgrade,
             caption: N_('Foreman Upgrade'),
             url: '/upgrade'
+          menu.item :infrastructure_hosts,
+            :caption => N_('Foreman and Capsules'),
+            :url => '/infrastructure_hosts',
+            :url_hash => { :controller => 'infrastructure_hosts', :action => 'index' },
+            :if => proc { User.current&.admin? }
           menu.item :settings,           :caption => N_('Settings')
           menu.item :about_index,        :caption => N_('About')
         end
